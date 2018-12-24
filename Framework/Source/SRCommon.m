@@ -14,6 +14,7 @@
 
 #import "SRCommon.h"
 #import "SRKeyCodeTransformer.h"
+#import "NSAppearance+DarkMode.h"
 
 #include <IOKit/hidsystem/IOLLEvent.h>
 
@@ -73,10 +74,10 @@ NSString * SRStringForCarbonModifierFlagsAndKeyCode( NSUInteger flags, NSInteger
 NSString * SRStringForCocoaModifierFlags( NSUInteger flags )
 {
     NSString *modifierFlagsString = [NSString stringWithFormat:@"%@%@%@%@", 
-		( flags & NSControlKeyMask ? SRChar(KeyboardControlGlyph) : @"" ),
-		( flags & NSAlternateKeyMask ? SRChar(KeyboardOptionGlyph) : @"" ),
-		( flags & NSShiftKeyMask ? SRChar(KeyboardShiftGlyph) : @"" ),
-		( flags & NSCommandKeyMask ? SRChar(KeyboardCommandGlyph) : @"" )];
+		( flags & NSEventModifierFlagControl ? SRChar(KeyboardControlGlyph) : @"" ),
+		( flags & NSEventModifierFlagOption ? SRChar(KeyboardOptionGlyph) : @"" ),
+		( flags & NSEventModifierFlagShift ? SRChar(KeyboardShiftGlyph) : @"" ),
+		( flags & NSEventModifierFlagCommand ? SRChar(KeyboardCommandGlyph) : @"" )];
 	
 	return modifierFlagsString;
 }
@@ -111,10 +112,10 @@ NSString * SRReadableStringForCarbonModifierFlagsAndKeyCode( NSUInteger flags, N
 NSString * SRReadableStringForCocoaModifierFlagsAndKeyCode( NSUInteger flags, NSInteger keyCode )
 {
     NSString *readableString = [NSString stringWithFormat:@"%@%@%@%@%@", 
-		(flags & NSCommandKeyMask ? SRLoc(@"Command + ") : @""),
-		(flags & NSAlternateKeyMask ? SRLoc(@"Option + ") : @""),
-		(flags & NSControlKeyMask ? SRLoc(@"Control + ") : @""),
-		(flags & NSShiftKeyMask ? SRLoc(@"Shift + ") : @""),
+		(flags & NSEventModifierFlagCommand ? SRLoc(@"Command + ") : @""),
+		(flags & NSEventModifierFlagOption ? SRLoc(@"Option + ") : @""),
+		(flags & NSEventModifierFlagControl ? SRLoc(@"Control + ") : @""),
+		(flags & NSEventModifierFlagShift ? SRLoc(@"Shift + ") : @""),
         SRStringForKeyCode( keyCode )];
 	return readableString;
 }
@@ -126,11 +127,11 @@ NSUInteger SRCarbonToCocoaFlags( NSUInteger carbonFlags )
 {
 	NSUInteger cocoaFlags = ShortcutRecorderEmptyFlags;
 	
-	if (carbonFlags & cmdKey) cocoaFlags |= NSCommandKeyMask;
-	if (carbonFlags & optionKey) cocoaFlags |= NSAlternateKeyMask;
-	if (carbonFlags & controlKey) cocoaFlags |= NSControlKeyMask;
-	if (carbonFlags & shiftKey) cocoaFlags |= NSShiftKeyMask;
-	if (carbonFlags & NSFunctionKeyMask) cocoaFlags += NSFunctionKeyMask;
+	if (carbonFlags & cmdKey) cocoaFlags |= NSEventModifierFlagCommand;
+	if (carbonFlags & optionKey) cocoaFlags |= NSEventModifierFlagOption;
+	if (carbonFlags & controlKey) cocoaFlags |= NSEventModifierFlagControl;
+	if (carbonFlags & shiftKey) cocoaFlags |= NSEventModifierFlagShift;
+	if (carbonFlags & NSEventModifierFlagFunction) cocoaFlags += NSEventModifierFlagFunction;
 	
 	return cocoaFlags;
 }
@@ -142,11 +143,11 @@ NSUInteger SRCocoaToCarbonFlags( NSUInteger cocoaFlags )
 {
 	NSUInteger carbonFlags = ShortcutRecorderEmptyFlags;
 	
-	if (cocoaFlags & NSCommandKeyMask) carbonFlags |= cmdKey;
-	if (cocoaFlags & NSAlternateKeyMask) carbonFlags |= optionKey;
-	if (cocoaFlags & NSControlKeyMask) carbonFlags |= controlKey;
-	if (cocoaFlags & NSShiftKeyMask) carbonFlags |= shiftKey;
-	if (cocoaFlags & NSFunctionKeyMask) carbonFlags |= NSFunctionKeyMask;
+	if (cocoaFlags & NSEventModifierFlagCommand) carbonFlags |= cmdKey;
+	if (cocoaFlags & NSEventModifierFlagOption) carbonFlags |= optionKey;
+	if (cocoaFlags & NSEventModifierFlagControl) carbonFlags |= controlKey;
+	if (cocoaFlags & NSEventModifierFlagShift) carbonFlags |= shiftKey;
+	if (cocoaFlags & NSEventModifierFlagFunction) carbonFlags |= NSEventModifierFlagFunction;
 	
 	return carbonFlags;
 }
@@ -187,8 +188,8 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(NSInteger keyCode, NSUInteger cocoa
 		return FailWithNaiveString;
 	
 	EventModifiers modifiers = 0;
-	if (cocoaFlags & NSAlternateKeyMask)	modifiers |= optionKey;
-	if (cocoaFlags & NSShiftKeyMask)		modifiers |= shiftKey;
+	if (cocoaFlags & NSEventModifierFlagOption)	modifiers |= optionKey;
+	if (cocoaFlags & NSEventModifierFlagShift)		modifiers |= shiftKey;
 	UniCharCount maxStringLength = 4, actualStringLength;
 	UniChar unicodeString[4];
 	err = UCKeyTranslate( keyLayout, (UInt16)keyCode, kUCKeyActionDisplay, modifiers, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, maxStringLength, &actualStringLength, unicodeString );
@@ -241,11 +242,12 @@ CGFloat SRAnimationEaseInOut(CGFloat t) {
 + (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
 {
 	NSString *reason = [error localizedRecoverySuggestion];
-	return [self alertWithMessageText:[error localizedDescription]
-						defaultButton:[[error localizedRecoveryOptions] objectAtIndex:0U]
-					  alternateButton:nil
-						  otherButton:nil
-			informativeTextWithFormat:(reason ? reason : @""), nil];
+	NSAlert *alert = [[NSAlert alloc] init];
+	alert.messageText = [error localizedDescription];
+	alert.informativeText = (reason ? reason : @"");
+	[alert addButtonWithTitle:[[error localizedRecoveryOptions] objectAtIndex:0U]];
+	return alert;
+	
 }
 
 @end
@@ -290,7 +292,6 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 	NSImage *returnImage = [[NSImage alloc] initWithSize:size];
 	[returnImage addRepresentation:customImageRep];
 	[customImageRep release];
-	[returnImage setScalesWhenResized:YES];
 	[SRSharedImageCache setObject:returnImage forKey:name];
 	
 #ifdef SRCommonWriteDebugImagery
@@ -332,7 +333,12 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 	
 	NSCustomImageRep *rep = anNSCustomImageRep;
 	NSSize size = [rep size];
-	[[NSColor whiteColor] setFill];
+	if (NSAppearance.sr_isDarkAquaEnabled) {
+		[[NSColor labelColor] setFill];
+	}
+	else {
+		[[NSColor whiteColor] setFill];
+	}
 	CGFloat hScale = (size.width/1.0f);
 	CGFloat vScale = (size.height/1.0f);
 	
@@ -379,7 +385,12 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 	
 	NSCustomImageRep *rep = anNSCustomImageRep;
 	NSSize size = [rep size];
-	[[NSColor colorWithCalibratedWhite:0.0f alpha:1.0f-opacity] setFill];
+	if (NSAppearance.sr_isDarkAquaEnabled) {
+		[[NSColor colorWithCalibratedWhite:0.75f alpha:1.0f-opacity] setFill];
+	}
+	else {
+		[[NSColor colorWithCalibratedWhite:0.0f alpha:1.0f-opacity] setFill];
+	}
 	CGFloat hScale = (size.width/14.0f);
 	CGFloat vScale = (size.height/14.0f);
 	

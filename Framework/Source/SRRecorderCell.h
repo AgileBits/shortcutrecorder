@@ -34,7 +34,7 @@ enum SRRecorderStyle {
 };
 typedef enum SRRecorderStyle SRRecorderStyle;
 
-@interface SRRecorderCell : NSActionCell <NSCoding>
+@interface SRRecorderCell : NSActionCell <NSCoding, NSAccessibilityButton>
 {	
 	NSGradient          *recordingGradient;
 	NSString            *autosaveName;
@@ -116,6 +116,7 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 - (BOOL)canCaptureGlobalHotKeys;
 - (void)setCanCaptureGlobalHotKeys:(BOOL)inState;
 
+- (void)_loadKeyCombo;
 - (KeyCombo)keyCombo;
 - (void)setKeyCombo:(KeyCombo)aKeyCombo;
 
@@ -134,6 +135,7 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 
 // Delegate Methods
 @interface NSObject (SRRecorderCellDelegate)
+- (NSUserDefaults *)userDefaultsForShortcutRecorderCell:(SRRecorderCell *)aRecorderCell;
 - (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
 - (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(KeyCombo)newCombo;
 @end

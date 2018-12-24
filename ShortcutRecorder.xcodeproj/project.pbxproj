@@ -3,13 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9371C79D15167DE2008B7F36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79715167DE2008B7F36 /* InfoPlist.strings */; };
 		9371C79E15167DE2008B7F36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79915167DE2008B7F36 /* Localizable.strings */; };
 		9371C79F15167DE2008B7F36 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9371C79B15167DE2008B7F36 /* MainMenu.xib */; };
+		9373C90721D179D300D3A17F /* NSAppearance+DarkMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9373C90521D179D300D3A17F /* NSAppearance+DarkMode.h */; };
+		9373C90821D179D300D3A17F /* NSAppearance+DarkMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9373C90621D179D300D3A17F /* NSAppearance+DarkMode.m */; };
+		9373C90C21D17AB800D3A17F /* NSImage+RTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 9373C90A21D17AB800D3A17F /* NSImage+RTL.h */; };
+		9373C90D21D17AB800D3A17F /* NSImage+RTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 9373C90B21D17AB800D3A17F /* NSImage+RTL.m */; };
 		939837950DA429EC007F53F3 /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29C109CDB9360085E9ED /* SRRecorderControl.m */; };
 		939837960DA429EC007F53F3 /* SRRecorderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29C309CDB9360085E9ED /* SRRecorderCell.m */; };
 		939837980DA429EC007F53F3 /* SRKeyCodeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C3670D0A246B4900B69171 /* SRKeyCodeTransformer.m */; };
@@ -170,6 +174,10 @@
 		9371C7AF15167E16008B7F36 /* sv */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = sv; path = sv.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9371C7B015167E17008B7F36 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "pt-BR"; path = "pt-BR.lproj/MainMenu.xib"; sourceTree = "<group>"; };
 		9371C7B115167E18008B7F36 /* sk */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = sk; path = sk.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9373C90521D179D300D3A17F /* NSAppearance+DarkMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAppearance+DarkMode.h"; sourceTree = "<group>"; };
+		9373C90621D179D300D3A17F /* NSAppearance+DarkMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAppearance+DarkMode.m"; sourceTree = "<group>"; };
+		9373C90A21D17AB800D3A17F /* NSImage+RTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+RTL.h"; sourceTree = "<group>"; };
+		9373C90B21D17AB800D3A17F /* NSImage+RTL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+RTL.m"; sourceTree = "<group>"; };
 		939837800DA42965007F53F3 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShortcutRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		939837B50DA42DFB007F53F3 /* ShortcutRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShortcutRecorder.h; path = Framework/ShortcutRecorder.h; sourceTree = SOURCE_ROOT; };
 		939838CD0DA4316E007F53F3 /* InterfaceBuilderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterfaceBuilderKit.framework; path = Library/Frameworks/InterfaceBuilderKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -247,6 +255,7 @@
 		0B8E29BB09CDB9360085E9ED /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				9373C90921D17A9B00D3A17F /* Categories */,
 				939837B50DA42DFB007F53F3 /* ShortcutRecorder.h */,
 				0B8E29C009CDB9360085E9ED /* SRRecorderControl.h */,
 				0B8E29C109CDB9360085E9ED /* SRRecorderControl.m */,
@@ -260,7 +269,7 @@
 				74C367110A246B4900B69171 /* SRCommon.m */,
 			);
 			name = Framework;
-			path = Source;
+			path = Framework/Source;
 			sourceTree = "<group>";
 		};
 		0B8E29FF09CDBADE0085E9ED /* Demo */ = {
@@ -377,6 +386,17 @@
 			path = Framework/Localizations;
 			sourceTree = "<group>";
 		};
+		9373C90921D17A9B00D3A17F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9373C90521D179D300D3A17F /* NSAppearance+DarkMode.h */,
+				9373C90621D179D300D3A17F /* NSAppearance+DarkMode.m */,
+				9373C90A21D17AB800D3A17F /* NSImage+RTL.h */,
+				9373C90B21D17AB800D3A17F /* NSImage+RTL.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -384,6 +404,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9373C90721D179D300D3A17F /* NSAppearance+DarkMode.h in Headers */,
+				9373C90C21D17AB800D3A17F /* NSImage+RTL.h in Headers */,
 				939839390DA4350B007F53F3 /* ShortcutRecorder.h in Headers */,
 				9398393B0DA4350B007F53F3 /* SRRecorderControl.h in Headers */,
 				9398393C0DA4350B007F53F3 /* SRRecorderCell.h in Headers */,
@@ -444,7 +466,7 @@
 				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShortcutRecorder" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -512,6 +534,8 @@
 				939837950DA429EC007F53F3 /* SRRecorderControl.m in Sources */,
 				939837960DA429EC007F53F3 /* SRRecorderCell.m in Sources */,
 				939837980DA429EC007F53F3 /* SRKeyCodeTransformer.m in Sources */,
+				9373C90D21D17AB800D3A17F /* NSImage+RTL.m in Sources */,
+				9373C90821D179D300D3A17F /* NSAppearance+DarkMode.m in Sources */,
 				939837990DA429EC007F53F3 /* SRValidator.m in Sources */,
 				9398379A0DA429EC007F53F3 /* SRCommon.m in Sources */,
 			);
@@ -655,7 +679,7 @@
 		83D9D6B815C3C5210090EBC4 /* Localization */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -668,6 +692,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wall";
 				WARNING_LDFLAGS = "";
 			};
@@ -697,7 +722,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = ShortcutRecorder;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Localization;
@@ -741,7 +766,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = ShortcutRecorder;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -770,7 +795,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = ShortcutRecorder;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -809,7 +834,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -822,6 +847,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wall";
 				WARNING_LDFLAGS = "";
 			};
@@ -830,7 +856,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -843,6 +869,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wall";
 				WARNING_LDFLAGS = "";
 			};
