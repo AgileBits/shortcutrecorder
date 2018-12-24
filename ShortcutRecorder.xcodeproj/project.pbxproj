@@ -178,6 +178,12 @@
 		9373C90621D179D300D3A17F /* NSAppearance+DarkMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAppearance+DarkMode.m"; sourceTree = "<group>"; };
 		9373C90A21D17AB800D3A17F /* NSImage+RTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+RTL.h"; sourceTree = "<group>"; };
 		9373C90B21D17AB800D3A17F /* NSImage+RTL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+RTL.m"; sourceTree = "<group>"; };
+		9373C93321D17E5500D3A17F /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		9373C93421D17E5500D3A17F /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9373C93521D17E5500D3A17F /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-CA"; path = "en-CA.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		9373C93621D17E7400D3A17F /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
+		9373C93721D17E7700D3A17F /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		9373C93821D17E7A00D3A17F /* lv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lv; path = lv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		939837800DA42965007F53F3 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShortcutRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		939837B50DA42DFB007F53F3 /* ShortcutRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShortcutRecorder.h; path = Framework/ShortcutRecorder.h; sourceTree = SOURCE_ROOT; };
 		939838CD0DA4316E007F53F3 /* InterfaceBuilderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterfaceBuilderKit.framework; path = Library/Frameworks/InterfaceBuilderKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -502,6 +508,8 @@
 				lv,
 				pt,
 				ca,
+				"en-GB",
+				"en-CA",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* ShortcutRecorder */;
 			projectDirPath = "";
@@ -593,6 +601,9 @@
 				83354C1715F5C830001DF8AA /* pt-PT */,
 				83354C1915F5C870001DF8AA /* pt */,
 				83354C1A15F5C889001DF8AA /* ca */,
+				9373C93621D17E7400D3A17F /* en-CA */,
+				9373C93721D17E7700D3A17F /* he */,
+				9373C93821D17E7A00D3A17F /* lv */,
 			);
 			name = ShortcutRecorder.strings;
 			path = Framework/Localizations;
@@ -619,6 +630,7 @@
 				9365EF01152D4646002CBDEC /* th */,
 				83F7CCA31571D297007C224F /* es */,
 				83F7CCA41571D298007C224F /* es-MX */,
+				9373C93321D17E5500D3A17F /* en-CA */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -644,6 +656,7 @@
 				9365EEFF152D463E002CBDEC /* th */,
 				83F7CCA01571D28D007C224F /* es */,
 				83F7CCA21571D28E007C224F /* es-MX */,
+				9373C93421D17E5500D3A17F /* en-CA */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -669,6 +682,7 @@
 				9365EEFD152D4638002CBDEC /* th */,
 				834754EE1571D469005BCB89 /* es */,
 				834754F01571D46A005BCB89 /* es-MX */,
+				9373C93521D17E5500D3A17F /* en-CA */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
