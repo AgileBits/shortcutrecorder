@@ -330,6 +330,14 @@
 
 #pragma mark *** Delegate pass-through ***
 
+- (NSUserDefaults *)userDefaultsForShortcutRecorderCell:(SRRecorderCell *)aRecorderCell {
+	NSUserDefaults *returnDefaults = nil;
+	if ([self.delegate respondsToSelector:@selector(userDefaultsForShortcutRecorder:)]) {
+		returnDefaults = [self.delegate userDefaultsForShortcutRecorder:self];
+	}
+	return returnDefaults;
+}
+
 - (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
 {
 	if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorder:isKeyCode:andFlagsTaken:reason:)])
