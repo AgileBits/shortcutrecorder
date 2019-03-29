@@ -234,24 +234,6 @@ CGFloat SRAnimationEaseInOut(CGFloat t) {
 #pragma mark -
 #pragma mark additions
 
-@implementation NSAlert( SRAdditions )
-
-//---------------------------------------------------------- 
-// + alertWithNonRecoverableError:
-//---------------------------------------------------------- 
-+ (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
-{
-	NSString *reason = [error localizedRecoverySuggestion];
-	NSAlert *alert = [[NSAlert alloc] init];
-	alert.messageText = [error localizedDescription];
-	alert.informativeText = (reason ? reason : @"");
-	[alert addButtonWithTitle:[[error localizedRecoveryOptions] objectAtIndex:0U]];
-	return alert;
-	
-}
-
-@end
-
 static NSMutableDictionary *SRSharedImageCache = nil;
 
 @interface SRSharedImageProvider (Private)

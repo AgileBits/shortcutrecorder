@@ -171,13 +171,6 @@ FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(NSInteger keyCode) {
 }
 
 #pragma mark -
-#pragma mark Additions
-
-@interface NSAlert( SRAdditions )
-+ (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
-@end
-
-#pragma mark -
 #pragma mark Image provider
 
 @interface SRSharedImageProvider : NSObject
